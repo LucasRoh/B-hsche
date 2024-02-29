@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/ability")
+@RequestMapping("/bohnen")
 public class BohnenController {
     //Bohnenservice wird aufgerufen um auf die Methoden zuzugreifen
     private final BohnenService bohnenService;
@@ -33,7 +33,7 @@ public class BohnenController {
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = "application/json")
-    public  void insertGenre(@Valid @RequestBody Bohnen bohnen){
+    public  void insertBohnen(@Valid @RequestBody Bohnen bohnen){
         try {
             bohnenService.insert(bohnen);
         }
@@ -43,7 +43,7 @@ public class BohnenController {
     }
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping(consumes = "application/json")
-    public void updateGenre(@Valid @RequestBody Bohnen bohnen){
+    public void updateBohnen(@Valid @RequestBody Bohnen bohnen){
         try {
             bohnenService.updateBohnen(bohnen);
         }

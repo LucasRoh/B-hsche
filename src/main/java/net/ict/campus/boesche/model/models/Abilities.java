@@ -22,7 +22,7 @@ public class Abilities {
     @NotBlank
     private Integer schaden;
     //Beziehung
-    @OneToMany
+    @OneToMany(mappedBy = "abilities")
     //Verhindert den Loop
     @JsonBackReference
     //Ist eine Setliste, da in der Theorie eine Ability zu mehreren Bohnen gehören kann.

@@ -15,6 +15,28 @@ public class AbilitiesService {
         this.abilitiesRepository = abilitiesRepository;
     }
 
+    public Iterable<Abilities> findAll(){
+        return abilitiesRepository.findAll();
+    }
+
+    public void insertAbility(Abilities abilities){
+        abilitiesRepository.save(abilities);
+
+    }
+
+    public void updateAbility(Abilities abilities){
+        abilitiesRepository.save(abilities);
+
+    }
+
+    public void deleteById(Integer id){
+        abilitiesRepository.deleteById(id);
+    }
+
+
+
+
+
 
 
 

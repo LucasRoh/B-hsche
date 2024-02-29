@@ -9,31 +9,30 @@ import javax.validation.constraints.NotNull;
 public class Bohnen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_bohnen;
     @NotNull
     @NotBlank
     @ManyToOne
-    @JoinColumn(name = "abilityId")
-    private Abilities abilityId;
+    @JoinColumn(name = "ability_id")
+    private Abilities abilities;
     @NotBlank
     @NotNull
     private String name;
 
-
-    public Integer getId() {
-        return id;
+    public Integer getId_bohnen() {
+        return id_bohnen;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_bohnen(Integer id_bohnen) {
+        this.id_bohnen = id_bohnen;
     }
 
-    public Abilities getAbilityId() {
-        return abilityId;
+    public Abilities getAbilities() {
+        return abilities;
     }
 
-    public void setAbilityId(Abilities abilityId) {
-        this.abilityId = abilityId;
+    public void setAbilities(Abilities abilities) {
+        this.abilities = abilities;
     }
 
     public String getName() {
