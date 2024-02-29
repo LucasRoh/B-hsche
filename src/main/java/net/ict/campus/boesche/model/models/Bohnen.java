@@ -7,6 +7,10 @@ import javax.persistence.*;
 public class Bohnen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer PrimaryKey;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ForeignKey;
 
 }
