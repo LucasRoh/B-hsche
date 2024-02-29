@@ -28,6 +28,12 @@ public class Abilities {
     //Ist eine Setliste, da in der Theorie eine Ability zu mehreren Bohnen gehören kann.
     private Set<Bohnen> bohnen = new HashSet<>();
 
+    @OneToMany
+    //Verhindert den Loop
+    @JsonBackReference
+    //Ist eine Setliste, da in der Theorie eine Ability zu mehreren Bohnen gehören kann.
+    private Set<Froesche> frosche = new HashSet<>();
+
     public Integer getId_ability() {
         return id_ability;
     }
