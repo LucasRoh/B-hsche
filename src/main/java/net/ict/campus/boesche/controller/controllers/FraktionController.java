@@ -52,7 +52,7 @@ public class FraktionController {
         }
     }
     @DeleteMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteById(@RequestParam("Id") Integer id){
         try {
             fraktionService.deleteById(id);
