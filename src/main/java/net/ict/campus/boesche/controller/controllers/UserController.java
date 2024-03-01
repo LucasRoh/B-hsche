@@ -45,12 +45,12 @@ public class UserController {
 
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path = "sign-up", consumes = "application/json")
+    @PostMapping(path = "/sign-up", consumes = "application/json")
     public void signUP(@RequestBody User user) {
         try {
             userService.signUp(user);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Could not sign up user");
+            e.getStackTrace();
         }
     }
 

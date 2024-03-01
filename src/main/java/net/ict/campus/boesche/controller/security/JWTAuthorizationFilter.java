@@ -1,4 +1,4 @@
-package net.ict.campus.boesche.controller.security;
+package net.ict.campus.boesche.controller.security;;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
