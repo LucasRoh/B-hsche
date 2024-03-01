@@ -1,6 +1,12 @@
 package net.ict.campus.boesche.controller.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.UserService;
+import net.ict.campus.boesche.model.models.Froesche;
 import net.ict.campus.boesche.model.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +29,16 @@ public class UserController {
         this.userService = userRepository;
     }
     @ResponseStatus(HttpStatus.FOUND)
+    @Operation(summary = "Get in User")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation= User.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @GetMapping(path = "{id}")
     public User findById(@RequestBody Integer id) {
         try {
@@ -33,6 +49,16 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.FOUND)
+    @Operation(summary = "Get in User")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation= User.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @GetMapping(path = "")
     public Iterable<User> findAll() {
         try {
@@ -45,16 +71,32 @@ public class UserController {
 
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path = "sign-up", consumes = "application/json")
+    @Operation(summary = "Post User by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
+    @PostMapping(path = "/sign-up", consumes = "application/json")
     public void signUP(@RequestBody User user) {
         try {
             userService.signUp(user);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Could not sign up user");
+            e.getStackTrace();
         }
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Put User by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @PutMapping(consumes = "application/json")
     public void updateUser(@Valid @RequestBody User user) {
         try {
@@ -65,6 +107,14 @@ public class UserController {
     }
 
     @DeleteMapping
+    @Operation(summary = "Delete User by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public void deleteByID(@RequestBody Integer id) {
         try {
@@ -75,6 +125,16 @@ public class UserController {
 
     }
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get in User")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation= User.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @GetMapping(path = "username/{username}")
     public User findByName(@PathVariable String username) {
         try {

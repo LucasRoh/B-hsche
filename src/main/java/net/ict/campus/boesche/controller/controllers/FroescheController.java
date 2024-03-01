@@ -1,9 +1,12 @@
 package net.ict.campus.boesche.controller.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.FroescheService;
+import net.ict.campus.boesche.model.models.Fraktion;
 import net.ict.campus.boesche.model.models.Froesche;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +18,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
-@Operation(summary ="get Froesche nach ID")
-@ApiResponses(value={
-        @ApiResponse(responseCode = "200", description = "Froesche found" ),
-        @ApiResponse(responseCode = "404", description = "Froesche notFound")
-})
-@RequestMapping ("/Froesche")
+@RequestMapping ("/froesche")
 public class FroescheController {
     private final FroescheService froescheService;
     //Braucht kein Autowire da er ein Konstruktor hat und deshalb weiss das du der FroescheService willst
@@ -28,6 +26,16 @@ public class FroescheController {
         this.froescheService = froescheService;
     }
     @GetMapping
+    @Operation(summary = "Get in Froesche")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation= Froesche.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Froesche> findAll(){
         try{
@@ -37,17 +45,15 @@ public class FroescheController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User Not Found");
         }
     }
-    @GetMapping("/1")
-    @ResponseStatus(HttpStatus.FOUND)
-    public String getFirstFrogName(){
-        try{
-            return froescheService.getFirstFrogName();
-        }
-        catch (EntityNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User Not Found");
-        }
-    }
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Post Froesche by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @PostMapping(consumes = "application/json")
     private void insertFroesche(@Valid @RequestBody Froesche froesche) {
         try {
@@ -57,6 +63,15 @@ public class FroescheController {
         }
     }
     @ResponseStatus(HttpStatus.ACCEPTED)
+
+    @Operation(summary = "Put Froesche by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @PutMapping(consumes = "application/json")
     private void updateFroesche(@Valid @RequestBody Froesche froesche){
             try{
@@ -68,6 +83,15 @@ public class FroescheController {
             }
         }
         @DeleteMapping
+
+        @Operation(summary = "Delete Froesche by ID")
+        @ApiResponses(value={
+                @ApiResponse(responseCode = "200", description = "Ok"),
+                @ApiResponse(responseCode = "404", description = "NotFound"),
+                @ApiResponse(responseCode = "401", description = "Unauthorized"),
+                @ApiResponse(responseCode = "403", description = "Forbidden"),
+                @ApiResponse(responseCode = "400", description = "BadRequest")
+        })
         @ResponseStatus(HttpStatus.ACCEPTED)
         public void deleteById(@RequestParam("Id") Integer id){
         try {

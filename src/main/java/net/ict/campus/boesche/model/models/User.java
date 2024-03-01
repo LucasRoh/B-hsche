@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Account")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class User {
     @NotBlank(message = "you are not allowed to not have a name sowwy so write somethign")
     private String username;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Length(min = 3, max = 20)
+    @Length(min = 3)
     private String password;
 
     public Integer getId() {

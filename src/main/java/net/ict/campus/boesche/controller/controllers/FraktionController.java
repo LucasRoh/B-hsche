@@ -1,7 +1,13 @@
 package net.ict.campus.boesche.controller.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.FraktionService;
 import net.ict.campus.boesche.controller.services.FroescheService;
+import net.ict.campus.boesche.model.models.Bohnen;
 import net.ict.campus.boesche.model.models.Fraktion;
 import net.ict.campus.boesche.model.models.Froesche;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +30,16 @@ public class FraktionController {
 
 
     @GetMapping
+    @Operation(summary = "Get in Fraktion")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation= Fraktion.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Fraktion> findAll(){
         try{ return fraktionService.findAll();
@@ -33,6 +49,13 @@ public class FraktionController {
         }
     }
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Post Fraktion by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")})
     @PostMapping(consumes = "application/json")
     private void insertFraktion(@Valid @RequestBody Fraktion fraktion) {
         try {
@@ -42,6 +65,13 @@ public class FraktionController {
         }
     }
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @Operation(summary = "Put Fraktion by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")})
     @PutMapping(consumes = "application/json")
     private void updateFraktion(@Valid @RequestBody Fraktion fraktion){
         try{
@@ -53,6 +83,13 @@ public class FraktionController {
         }
     }
     @DeleteMapping
+    @Operation(summary = "Delete Fraktion by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteById(@RequestParam("Id") Integer id){
         try {

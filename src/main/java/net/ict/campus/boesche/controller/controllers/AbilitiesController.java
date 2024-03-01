@@ -1,6 +1,10 @@
 package net.ict.campus.boesche.controller.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.AbilitiesService;
 import net.ict.campus.boesche.model.models.Abilities;
 import net.ict.campus.boesche.model.models.Bohnen;
@@ -22,6 +26,16 @@ public class AbilitiesController {
     }
 
     @GetMapping
+    @Operation(summary = "Get in Abilities")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation=Abilities.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Abilities> findAll(){
         try {
@@ -32,6 +46,14 @@ public class AbilitiesController {
         }
     }
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Post Abilities by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @PostMapping(consumes = "application/json")
     public void insertAbility(@Valid @RequestBody Abilities abilities){
         try {
@@ -42,6 +64,14 @@ public class AbilitiesController {
         }
     }
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @Operation(summary = "Put Abilities by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @PutMapping(consumes = "application/json")
     public void updateAbility(@Valid @RequestBody Abilities abilities){
         try {
@@ -52,6 +82,14 @@ public class AbilitiesController {
         }
     }
     @DeleteMapping
+    @Operation(summary = "Delete Abilities by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteById(@RequestParam("id") Integer id){
         try {
