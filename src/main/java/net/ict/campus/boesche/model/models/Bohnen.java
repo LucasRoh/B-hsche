@@ -1,49 +1,38 @@
 package net.ict.campus.boesche.model.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "Bohnen")
 public class Bohnen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_bohnen;
     @NotNull
     @NotBlank
     @ManyToOne
-    @JoinColumn(name = "abilityId")
-    private Abilities abilityId;
+    @JoinColumn(name = "ability_id")
+    private Abilities abilities;
     @NotBlank
     @NotNull
     private String name;
 
-    @OneToMany
-    //Verhindert den Loop
-    @JsonBackReference
-    //Ist eine Setliste, da in der Theorie eine Bohne zu mehreren Froesche gehören kann.
-    private Set<Froesche> froesche = new HashSet<>();
-
-
-    public Integer getId() {
-        return id;
+    public Integer getId_bohnen() {
+        return id_bohnen;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_bohnen(Integer id_bohnen) {
+        this.id_bohnen = id_bohnen;
     }
 
-    public Abilities getAbilityId() {
-        return abilityId;
+    public Abilities getAbilities() {
+        return abilities;
     }
 
-    public void setAbilityId(Abilities abilityId) {
-        this.abilityId = abilityId;
+    public void setAbilities(Abilities abilities) {
+        this.abilities = abilities;
     }
 
     public String getName() {

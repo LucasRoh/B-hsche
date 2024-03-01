@@ -15,15 +15,25 @@ import javax.validation.Valid;
 @RequestMapping ("/Froesche")
 public class FroescheController {
     private final FroescheService froescheService;
-
-    @Autowired
+    //Braucht kein Autowire da er ein Konstruktor hat und deshalb weiss das du der FroescheService willst
     public FroescheController(FroescheService froescheService) {
         this.froescheService = froescheService;
     }
     @GetMapping
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Froesche> findAll(){
-        try{ return froescheService.findall();
+        try{
+            return froescheService.findAll();
+        }
+        catch (EntityNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User Not Found");
+        }
+    }
+    @GetMapping("/1")
+    @ResponseStatus(HttpStatus.FOUND)
+    public String getFirstFrogName(){
+        try{
+            return froescheService.getFirstFrogName();
         }
         catch (EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User Not Found");
@@ -33,7 +43,7 @@ public class FroescheController {
     @PostMapping(consumes = "application/json")
     private void insertFroesche(@Valid @RequestBody Froesche froesche) {
         try {
-            FroescheService.insertFroesche(froesche);
+            froescheService.insertFroesche(froesche);
         } catch (RuntimeException r) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User Not Found");
         }
@@ -42,7 +52,7 @@ public class FroescheController {
     @PutMapping(consumes = "application/json")
     private void updateFroesche(@Valid @RequestBody Froesche froesche){
             try{
-                FroescheService.updateFroesche(froesche);
+                froescheService.updateFroesche(froesche);
             }catch(RuntimeException r){
                 throw new ResponseStatusException(HttpStatus.CONFLICT);
 
@@ -53,7 +63,7 @@ public class FroescheController {
         @ResponseStatus(HttpStatus.ACCEPTED)
         public void deleteById(@RequestParam("Id") Integer id){
         try {
-            FroescheService.deleteById(id);
+            froescheService.deleteById(id);
         }catch(RuntimeException r){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

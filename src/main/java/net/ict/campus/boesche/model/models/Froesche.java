@@ -12,7 +12,15 @@ public class Froesche {
 @Id
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 private Integer id;
-private String Name;
+
+    private String Name;
 
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return Name;
+    }
 }

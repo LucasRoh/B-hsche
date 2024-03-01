@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping ("/Froesche")
+@RequestMapping ("/Fraktion")
 public class FraktionController {
     private final FraktionService fraktionService;
 
