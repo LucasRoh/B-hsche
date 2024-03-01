@@ -1,5 +1,10 @@
 package net.ict.campus.boesche.controller.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.BohnenService;
 import net.ict.campus.boesche.model.models.Bohnen;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +27,16 @@ public class BohnenController {
     }
 
     @GetMapping
+    @Operation(summary = "Get in Bohnen")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok", content = @Content(
+                    mediaType="application/json",
+                    schema = @Schema(implementation=Bohnen.class)
+            )),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest") })
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Bohnen> findAll(){
         try {
@@ -32,7 +47,17 @@ public class BohnenController {
         }
     }
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = "application/json")
+    @Operation(summary = "Post Bohnen by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")
+    })
+
+
+        @PostMapping(consumes = "application/json")
     public  void insertBohnen(@Valid @RequestBody Bohnen bohnen){
         try {
             bohnenService.insert(bohnen);
@@ -42,6 +67,13 @@ public class BohnenController {
         }
     }
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @Operation(summary = "Put Bohnen by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")})
     @PutMapping(consumes = "application/json")
     public void updateBohnen(@Valid @RequestBody Bohnen bohnen){
         try {
@@ -52,6 +84,13 @@ public class BohnenController {
         }
     }
     @DeleteMapping
+    @Operation(summary = "Delete Bohnen by ID")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "404", description = "NotFound"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "400", description = "BadRequest")})
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteById(@RequestParam("id") Integer id){
         try {

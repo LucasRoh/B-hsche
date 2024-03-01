@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class FraktionControllerTest {
 
     // JSON-Gerüst für alle Filme (entspricht dem Gerüst von TestDataUtil: getTestMovies())
-    private static final String JSON_ALL_Fraktionen = "[{\"id\":1, \"name\": \"Fraktion1\"}, {\"id\":2, \"name\": \"Fraktion2\"}, {\"id\":3, \"name\": \"Fraktion3\"}]";
+    private static final String JSON_ALL_Fraktionen = "[{\"name\":\"Fraktion1\", \"id\": 1}, {\"name\":\"Fraktion2\", \"id\": 2}, {\"name\":\"Fraktion3\", \"id\": 3}]";
 
     @Autowired
     private MockMvc mockMvc;

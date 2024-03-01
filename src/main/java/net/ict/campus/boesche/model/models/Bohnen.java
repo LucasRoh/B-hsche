@@ -12,6 +12,7 @@ public class Bohnen {
     private Integer id_bohnen;
     @NotNull
     @NotBlank
+    //Many to One weil Tabelle Fremdschlüssel hat
     @ManyToOne
     @JoinColumn(name = "ability_id")
     private Abilities abilities;

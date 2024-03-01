@@ -14,3 +14,6 @@ public class ApplicationConfiguration {
     }
 
 }
+//erstes pullen
+//comments bei commit
+//immer branches machen

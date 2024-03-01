@@ -1,7 +1,6 @@
 package net.ict.campus.boesche;
 
 
-import net.ict.campus.boesche.model.models.Bohnen;
 import net.ict.campus.boesche.model.models.Fraktion;
 import net.ict.campus.boesche.model.models.Abilities;
 
@@ -15,12 +14,12 @@ public class TestDataUtil {
         HashSet<Abilities> abilities = new HashSet<>();
 
         Fraktion fraktion = new Fraktion();
-        fraktion.setId_Fraktion(1);
+        fraktion.setID_Fraktion(1);
         fraktion.setName("Fraktion");
 
 
         for (int i = 1; i <= 3; i++) {
-            fraktion.setId_Fraktion(i);
+            fraktion.setID_Fraktion(i);
             fraktion.setName("Fraktion"+i);
             fraktionen.add(fraktion);
         }

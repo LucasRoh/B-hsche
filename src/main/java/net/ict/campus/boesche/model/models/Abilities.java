@@ -22,6 +22,7 @@ public class Abilities {
     @NotBlank
     private Integer schaden;
     //Beziehung
+    //OneToMany weil diese Tabelle die Primärtabelle ist
     @OneToMany(mappedBy = "abilities")
     //Verhindert den Loop
     @JsonBackReference

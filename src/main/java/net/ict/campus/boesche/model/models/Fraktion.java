@@ -11,7 +11,7 @@ import java.util.Set;
 public class Fraktion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id_Fraktion;
+    private Integer ID_Fraktion;
 
     private String name;
 
@@ -21,12 +21,15 @@ public class Fraktion {
     //Ist eine Setliste, da in der Theorie eine Fraktion zu mehreren Froesche gehören kann.
     private Set<Froesche> froesche = new HashSet<>();
 
-    public Integer getId_Fraktion() {
-        return Id_Fraktion;
+    public Fraktion() {
     }
 
-    public void setId_Fraktion(Integer id_Fraktion) {
-        Id_Fraktion = id_Fraktion;
+    public Integer getID_Fraktion() {
+        return ID_Fraktion;
+    }
+
+    public void setID_Fraktion(Integer ID_Fraktion) {
+        this.ID_Fraktion = ID_Fraktion;
     }
 
     public String getName() {
