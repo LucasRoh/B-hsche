@@ -24,7 +24,6 @@ public class FraktionController {
 
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Fraktion> findAll(){
         try{ return fraktionService.findAll();
         }

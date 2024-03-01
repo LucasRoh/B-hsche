@@ -2,12 +2,14 @@ package net.ict.campus.boesche.controller.services;
 
 import net.ict.campus.boesche.controller.repositories.FraktionRepository;
 import net.ict.campus.boesche.model.models.Fraktion;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FraktionService {
     private final FraktionRepository fraktionRepository;
 
+    @Autowired
     public FraktionService(FraktionRepository fraktionRepository) {
         this.fraktionRepository = fraktionRepository;
     }

@@ -12,7 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping ("/Froesche")
+@RequestMapping ("/froesche")
 public class FroescheController {
     private final FroescheService froescheService;
     //Braucht kein Autowire da er ein Konstruktor hat und deshalb weiss das du der FroescheService willst
