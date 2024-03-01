@@ -1,5 +1,6 @@
 package net.ict.campus.boesche.controller.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import net.ict.campus.boesche.controller.services.BohnenService;
 import net.ict.campus.boesche.model.models.Bohnen;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class BohnenController {
         this.bohnenService = bohnenService;
     }
 
+    @Operation
     @GetMapping
     @ResponseStatus(HttpStatus.FOUND)
     public Iterable<Bohnen> findAll(){

@@ -1,5 +1,8 @@
 package net.ict.campus.boesche.controller.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.FroescheService;
 import net.ict.campus.boesche.model.models.Froesche;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,11 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
+@Operation(summary ="get Froesche nach ID")
+@ApiResponses(value={
+        @ApiResponse(responseCode = "200", description = "Froesche found" ),
+        @ApiResponse(responseCode = "404", description = "Froesche notFound")
+})
 @RequestMapping ("/Froesche")
 public class FroescheController {
     private final FroescheService froescheService;

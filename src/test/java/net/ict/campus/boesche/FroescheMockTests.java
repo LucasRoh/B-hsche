@@ -22,7 +22,7 @@ class FroescheMockTests {
     private MockMvc mockMvc;
 
     @Test
-    void FroescheMock() throws Exception {
+    void froescheMock() throws Exception {
         // hier sage ich was der Mock bei einem Aufruf der Methode getFirstFrogName zurückgeben soll
         when(service.getFirstFrogName()).thenReturn("Antwort vom Mock");
 

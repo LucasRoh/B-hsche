@@ -1,5 +1,6 @@
 package net.ict.campus.boesche.controller.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import net.ict.campus.boesche.controller.services.AbilitiesService;
 import net.ict.campus.boesche.model.models.Abilities;
 import net.ict.campus.boesche.model.models.Bohnen;
