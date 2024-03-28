@@ -1,8 +1,12 @@
 package net.ict.campus.boesche.model.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Bohnen")
@@ -19,6 +23,12 @@ public class Bohnen {
     @NotBlank
     @NotNull
     private String name;
+
+    @OneToMany(mappedBy = "bohnen_ID")
+    //Verhindert den Loop
+    @JsonBackReference
+    //Ist eine Setliste, da in der Theorie eine Ability zu mehreren Bohnen gehören kann.
+    private Set<Froesche> froesche = new HashSet<>();
 
     public Integer getId_bohnen() {
         return id_bohnen;

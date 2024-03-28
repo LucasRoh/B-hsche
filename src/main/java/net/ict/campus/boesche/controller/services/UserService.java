@@ -35,14 +35,8 @@ public class UserService {
        user.setPassword(bCrypt.encode(user.getPassword()));
         userRepository.save(user);
     }
-    public User findByName(String Name){
-        Iterable<User> users = userRepository.findAll();
-        for (User user : users) {
-            if (user.getUsername().equals(Name)) {
-                return user;
-            }
-        }
-        throw new EntityNotFoundException("Could not find user with name: " + Name + "");
+    public User findByName(String name) {
+        return this.userRepository.findByUsername(name);
     }
 
     public void deleteById(Integer id){

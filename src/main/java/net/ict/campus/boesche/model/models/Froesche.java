@@ -16,6 +16,12 @@ private Integer id;
 
     private String Name;
 
+    private String image;
+    @ManyToOne
+    @JoinColumn(name = "bohnen_id")
+    private Bohnen bohnen_ID;
+
+
 
     public Integer getId() {
         return id;
@@ -24,4 +30,16 @@ private Integer id;
     public String getName() {
         return Name;
     }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
+
+
+

@@ -1,6 +1,7 @@
 package net.ict.campus.boesche.controller.security;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ict.campus.boesche.model.models.User;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -48,11 +49,19 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) {
-
         String token = JWT.create()
                 .withSubject(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .sign(HMAC512(SECRET.getBytes()));
+                .sign(Algorithm.HMAC512(SECRET.getBytes()));
+        try {
+            res.setCharacterEncoding("UTF-8");
+            res.setContentType("application/json");
+            String myJson = "{\"accesstoken\": \"" + token + "\"}";
+            res.getWriter().write(myJson);
+            res.getWriter().flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }
 }

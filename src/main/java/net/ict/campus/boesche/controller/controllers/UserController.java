@@ -40,7 +40,7 @@ public class UserController {
             @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "400", description = "BadRequest") })
     @GetMapping(path = "{id}")
-    public User findById(@RequestBody Integer id) {
+    public User findById(@PathVariable Integer id) {
         try {
             return userService.findById(id);
         } catch (EntityNotFoundException e) {

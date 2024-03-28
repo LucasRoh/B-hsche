@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import net.ict.campus.boesche.controller.services.FroescheService;
 import net.ict.campus.boesche.model.models.Fraktion;
 import net.ict.campus.boesche.model.models.Froesche;
+import net.ict.campus.boesche.model.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -36,13 +37,22 @@ public class FroescheController {
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "400", description = "BadRequest") })
-    @ResponseStatus(HttpStatus.FOUND)
+    
     public Iterable<Froesche> findAll(){
         try{
             return froescheService.findAll();
         }
         catch (EntityNotFoundException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User Not Found");
+        }
+    }
+
+    @GetMapping(path = "{id}")
+    public Froesche findById(@PathVariable Integer id) {
+        try {
+            return froescheService.findById(id);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Frosch not found");
         }
     }
     @ResponseStatus(HttpStatus.CREATED)
