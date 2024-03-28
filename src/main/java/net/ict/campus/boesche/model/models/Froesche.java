@@ -39,6 +39,22 @@ private Integer id;
     public void setImage(String image) {
         this.image = image;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public Bohnen getBohnen_ID() {
+        return bohnen_ID;
+    }
+
+    public void setBohnen_ID(Bohnen bohnen_ID) {
+        this.bohnen_ID = bohnen_ID;
+    }
 }
 
 

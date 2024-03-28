@@ -53,4 +53,12 @@ public class Bohnen {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Set<Froesche> getFroesche() {
+        return froesche;
+    }
+
+    public void setFroesche(Set<Froesche> froesche) {
+        this.froesche = froesche;
+    }
 }
